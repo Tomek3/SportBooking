@@ -7,70 +7,96 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dip"
-        android:weightSum="1">
+        android:padding="10dip" >
+
+        <!-- View Title Label -->
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dip"
-            android:text="@string/login_title"
+            android:layout_weight="0.35"
+            android:text="@string/register_title"
             android:textAlignment="center"
             android:textSize="25sp"
             android:textStyle="bold" />
+        <!-- Name Label -->
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dip"
-            android:text="@string/login" />
+            android:text="@string/name" />
+        <!-- Name TextField -->
 
         <EditText
-            android:id="@+id/loginEmail"
+            android:id="@+id/registerName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" android:hint="@string/hint_name"/>
+
+        <!-- Email Label -->
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dip"
+            android:text="@string/email" />
+        <!-- Email TextField -->
+
+        <EditText
+            android:id="@+id/registerEmail"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_mail"
             android:inputType="textEmailAddress" />
+
+        <!-- Password Label -->
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dip"
             android:text="@string/password" />
+        <!-- Password TextField -->
 
         <EditText
-            android:id="@+id/loginPassword"
+            android:id="@+id/registerPassword"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_password"
             android:inputType="textPassword" />
 
+        <!-- Error message -->
+
         <TextView
-            android:id="@+id/login_error"
+            android:id="@+id/register_error"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:padding="10dip"
             android:textColor="#e30000"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnRegister"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:background="@color/colorPrimary"
-            android:onClick="loginUser"
-            android:text="@string/zaloguj"
+            android:onClick="registerUser"
+            android:text="@string/register"
             android:textColor="#fff" />
 
+        <!-- Link to Login Screen -->
+
         <Button
-            android:id="@+id/btnLinkToRegisterScreen"
+            android:id="@+id/btnLinkToLoginScreen"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:background="@null"
-            android:onClick="navigatetoRegisterActivity"
-            android:text="@string/signup"
+            android:onClick="navigatetoLoginActivity"
+            android:text="@string/login_title"
             android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold" />
     </LinearLayout>

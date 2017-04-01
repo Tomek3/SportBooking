@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">SportBooking</string>
+    <string name="login_title">Logowanie</string>
+    <string name="password">Hasło</string>
+    <string name="login">Login</string>
+    <string name="signup">Rejestracja</string>
+    <string name="zaloguj">Zaloguj</string>
+    <string name="register_title">Rejestracja</string>
+    <string name="name">Nazwa użytkownika</string>
+    <string name="hint_name">Podaj nazwę użytkownia</string>
+    <string name="email">E-mail</string>
+    <string name="hint_mail">Podaj adres e-mail</string>
+    <string name="hint_password">Podaj hasło</string>
+    <string name="register">Zarejestruj</string>
 </resources>
