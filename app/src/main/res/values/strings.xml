@@ -18,5 +18,11 @@
     <string name="httpError">Unexpected Error occcured! [Most common Error: Device might not be connected to Internet or remote server is not up and running]</string>
     <string name="jsonError">Error Occured [Server JSON response might be invalid]!</string>
 
+    <string name="drawer_header_text">Menu</string>
+    <string name="nav_item_objects">Obiekty</string>
+    <string name="nav_item_reservation">Rezerwacje</string>
+    <string name="nav_item_notification">Notyfikacje</string>
+    <string name="nav_sub_menu">Inne</string>
+    <string name="nav_item_logout">Wyloguj</string>
 
 </resources>

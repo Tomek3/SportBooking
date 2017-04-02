@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navigation_item_attachment"
+            android:checked="true"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="@string/nav_item_objects" />
+        <item
+            android:id="@+id/navigation_item_images"
+            android:icon="@android:drawable/ic_menu_my_calendar"
+            android:title="@string/nav_item_reservation" />
+        <item
+            android:id="@+id/navigation_item_location"
+            android:icon="@android:drawable/ic_btn_speak_now"
+            android:title="@string/nav_item_notification" />
+    </group>
+
+    <item android:title="@string/nav_sub_menu">
+        <menu>
+            <item
+                android:icon="@android:drawable/ic_lock_power_off"
+                android:title="@string/nav_item_logout" />
+        </menu>
+    </item>
+
+</menu>
