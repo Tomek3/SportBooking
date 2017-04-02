@@ -12,4 +12,11 @@
     <string name="hint_mail">Podaj adres e-mail</string>
     <string name="hint_password">Podaj hasło</string>
     <string name="register">Zarejestruj</string>
+
+    <string name="http404">Requested resource not found</string>
+    <string name="http500">Something went wrong at server end</string>
+    <string name="httpError">Unexpected Error occcured! [Most common Error: Device might not be connected to Internet or remote server is not up and running]</string>
+    <string name="jsonError">Error Occured [Server JSON response might be invalid]!</string>
+
+
 </resources>
