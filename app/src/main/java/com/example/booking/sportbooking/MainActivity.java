@@ -1,5 +1,6 @@
 package com.example.booking.sportbooking;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import org.json.JSONException;
@@ -95,9 +96,17 @@ public class MainActivity extends AppCompatActivity {
                 prgDialog.hide();
                 try {
                     // JSON Object
-                    JSONObject obj = new JSONObject(String.valueOf(response));
+                    JSONObject obj = new JSONObject(response);
                     // When the JSON response has status boolean value assigned with true
                     if(obj.getBoolean("status")){
+                        SharedPreferences settings = getSharedPreferences("UserInfo", 0);
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putString("Login",obj.getString("login"));
+                        editor.putString("Password",obj.getString("password"));
+                        editor.putString("Name",obj.getString("name"));
+
+                        editor.commit();
+
                         Toast.makeText(getApplicationContext(), "You are successfully logged in!", Toast.LENGTH_LONG).show();
                         // Navigate to HomeActivity screen
                         navigatetoHomeActivity();
