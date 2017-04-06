@@ -20,8 +20,9 @@
     <item android:title="@string/nav_sub_menu">
         <menu>
             <item
+                android:id="@+id/navigation_item_about_program"
                 android:icon="@android:drawable/ic_lock_power_off"
-                android:title="@string/nav_item_logout" />
+                android:title="@string/nav_item_about_program" />
         </menu>
     </item>
 

@@ -1,5 +1,6 @@
 package com.example.booking.sportbooking;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.support.design.widget.NavigationView;
@@ -77,6 +78,10 @@ public class HomeActivity extends AppCompatActivity {
 //        }
 //
 //        return super.onOptionsItemSelected(item);
+        if(R.id.action_settings == item.getItemId())
+        {
+            navigatetoLoginActivity();
+        }
 
         if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
@@ -156,6 +161,17 @@ public class HomeActivity extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         // Pass any configuration change to the drawer toggles
         drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    public void navigatetoLoginActivity(){
+        Intent loginIntent = new Intent(getApplicationContext(),MainActivity.class);
+        // Clears History of Activity
+        loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(loginIntent);
+    }
+
+    public void hideMenu(View view){
+        mDrawerLayout.closeDrawers();
     }
 
 
