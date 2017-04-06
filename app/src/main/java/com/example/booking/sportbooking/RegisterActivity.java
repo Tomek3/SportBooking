@@ -78,12 +78,12 @@ public class RegisterActivity extends AppCompatActivity {
             }
             // When Email is invalid
             else{
-                Toast.makeText(getApplicationContext(), "Please enter valid email", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.enter_valid_mail, Toast.LENGTH_LONG).show();
             }
         }
         // When any of the Edit View control left blank
         else{
-            Toast.makeText(getApplicationContext(), "Please fill the form, don't leave any field blank", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.fiill_all_fields, Toast.LENGTH_LONG).show();
         }
 
     }
@@ -112,7 +112,7 @@ public class RegisterActivity extends AppCompatActivity {
                         // Set Default Values for Edit View controls
                         setDefaultValues();
                         // Display successfully registered message using Toast
-                        Toast.makeText(getApplicationContext(), "You are successfully registered!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), R.string.register_successfully, Toast.LENGTH_LONG).show();
                     }
                     // Else display error message
                     else{

@@ -27,5 +27,9 @@
     <string name="action_settings">O programie</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="register_successfully">Zarejestrowano pomyślnie!</string>
+    <string name="enter_valid_mail">Proszę podać poprawny e-mail</string>
+    <string name="fiill_all_fields">Proszę wypełnić wszystkie pola</string>
+    <string name="login_successfully">Zalogowano poprawnie!</string>
 
 </resources>

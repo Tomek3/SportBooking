@@ -69,10 +69,10 @@ public class MainActivity extends AppCompatActivity {
             }
             // When Email is invalid
             else{
-                Toast.makeText(getApplicationContext(), "Please enter valid email", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.enter_valid_mail, Toast.LENGTH_LONG).show();
             }
         } else{
-            Toast.makeText(getApplicationContext(), "Please fill the form, don't leave any field blank", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.fiill_all_fields, Toast.LENGTH_LONG).show();
         }
 
     }
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
                         editor.commit();
 
-                        Toast.makeText(getApplicationContext(), "You are successfully logged in!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), R.string.login_successfully, Toast.LENGTH_LONG).show();
                         // Navigate to HomeActivity screen
                         navigatetoHomeActivity();
                     }
