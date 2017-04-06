@@ -24,5 +24,8 @@
     <string name="nav_item_notification">Notyfikacje</string>
     <string name="nav_sub_menu">Inne</string>
     <string name="nav_item_logout">Wyloguj</string>
+    <string name="action_settings">O programie</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
 
 </resources>
