@@ -27,7 +27,8 @@
             android:theme="@style/LoginTheme" />
         <activity android:name=".ObjectActivity" />
         <activity android:name=".ReservationActivity" />
-        <activity android:name=".NotificationActivity"></activity>
+        <activity android:name=".NotificationActivity" />
+        <activity android:name=".AboutProgramActivity"></activity>
     </application>
 
 </manifest>

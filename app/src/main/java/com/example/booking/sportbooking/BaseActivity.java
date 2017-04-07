@@ -141,6 +141,9 @@ public class BaseActivity extends AppCompatActivity {
             case R.id.navigation_item_notification:
                 startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
                 break;
+            case R.id.navigation_item_about_program:
+                startActivity(new Intent(getApplicationContext(), AboutProgramActivity.class));
+                break;
             default:
                 startActivity(new Intent(getApplicationContext(), ObjectActivity.class));
         }
