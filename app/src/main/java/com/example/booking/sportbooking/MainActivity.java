@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                         editor.commit();
 
                         Toast.makeText(getApplicationContext(), R.string.login_successfully, Toast.LENGTH_LONG).show();
-                        // Navigate to HomeActivity screen
+                        // Navigate to BaseActivity screen
                         navigatetoHomeActivity();
                     }
                     // Else display error message
@@ -146,10 +146,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Method which navigates from Login Activity to HomeActivity Activity
+     * Method which navigates from Login Activity to BaseActivity Activity
      */
     public void navigatetoHomeActivity(){
-        Intent homeIntent = new Intent(getApplicationContext(),HomeActivity.class);
+        Intent homeIntent = new Intent(getApplicationContext(),ObjectActivity.class);
         homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(homeIntent);
     }
