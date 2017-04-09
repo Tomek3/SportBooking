@@ -50,6 +50,7 @@ public class ObjectActivity extends BaseActivity {
 
         //final List<ReservationObject> reservationObjectList = getReservationObjectList();
 
+        prgDialog.show();
         Call<List<ReservationObject>> call = apiService.doGetListReservationObject();
         call.enqueue(new Callback<List<ReservationObject>>() {
             @Override
@@ -57,13 +58,16 @@ public class ObjectActivity extends BaseActivity {
                 List<ReservationObject> reservationObjects = response.body();
                 Log.d(TAG, "Number of movies received: " + reservationObjects.size());
 
-                //ReservationObjectAdapter adapter = new ReservationObjectAdapter(this, reservationObjects);
-                //listView.setAdapter(adapter);
+                ReservationObjectAdapter adapter = new ReservationObjectAdapter(getBaseContext(), reservationObjects);
+                listView.setAdapter(adapter);
+
+                prgDialog.hide();
             }
 
             @Override
             public void onFailure(Call<List<ReservationObject>>call, Throwable t) {
                 Log.e(TAG, t.toString());
+                prgDialog.hide();
             }
         });
 
@@ -117,9 +121,9 @@ public class ObjectActivity extends BaseActivity {
     private class ReservationObjectAdapter extends BaseAdapter {
         private Context mContext;
         private LayoutInflater mInflater;
-        private ArrayList<ReservationObject> mDataSource;
+        private List<ReservationObject> mDataSource;
 
-        public ReservationObjectAdapter(Context context, ArrayList<ReservationObject> items) {
+        public ReservationObjectAdapter(Context context, List<ReservationObject> items) {
             mContext = context;
             mDataSource = items;
             mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
