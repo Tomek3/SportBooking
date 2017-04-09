@@ -1,5 +1,6 @@
 package com.example.booking.sportbooking;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -23,6 +24,7 @@ public class BaseActivity extends AppCompatActivity {
     protected Toolbar toolbar;
     protected ActionBarDrawerToggle drawerToggle;
     protected NavigationView navigationView;
+    protected ProgressDialog prgDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,8 @@ public class BaseActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences("UserInfo", 0);
         login.setText(settings.getString("Login", "").toString());
         name.setText(settings.getString("Name", "").toString());
+
+        prgDialog = new ProgressDialog(this);
     }
 
     @Override
