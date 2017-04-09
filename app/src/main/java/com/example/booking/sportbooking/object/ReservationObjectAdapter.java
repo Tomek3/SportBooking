@@ -51,9 +51,13 @@ public class ReservationObjectAdapter extends BaseAdapter {
         TextView subTitleTextView =
                 (TextView) rowView.findViewById(R.id.secondLine);
 
+        TextView descriptionTextView =
+                (TextView) rowView.findViewById(R.id.thirdLine);
+
         ReservationObject reservationObject = (ReservationObject) getItem(position);
         titleTextView.setText(reservationObject.getName());
-        subTitleTextView.setText(reservationObject.getInfo());
+        subTitleTextView.setText(reservationObject.getAddress());
+        descriptionTextView.setText(reservationObject.getInfo());
 
         return rowView;
     }
