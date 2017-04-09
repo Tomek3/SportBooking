@@ -18,8 +18,13 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.booking.sportbooking.object.ObjectActivity;
+import com.example.booking.sportbooking.service.ApiClient;
+import com.example.booking.sportbooking.service.ApiInterface;
+
 public class BaseActivity extends AppCompatActivity {
 
+    protected ApiInterface apiService;
     protected DrawerLayout mDrawerLayout;
     protected Toolbar toolbar;
     protected ActionBarDrawerToggle drawerToggle;
@@ -30,6 +35,8 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
+
+        apiService = ApiClient.getClient().create(ApiInterface.class);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

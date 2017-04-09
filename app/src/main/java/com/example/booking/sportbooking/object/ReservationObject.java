@@ -1,4 +1,4 @@
-package com.example.booking.sportbooking.service;
+package com.example.booking.sportbooking.object;
 
 /**
  * Created by Tomek on 08.04.2017.
