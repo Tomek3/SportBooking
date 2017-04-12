@@ -43,22 +43,33 @@ public class ReservationObjectAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View rowView = mInflater.inflate(R.layout.object_list_item, parent, false);
-
-        TextView titleTextView =
-                (TextView) rowView.findViewById(R.id.firstLine);
-
-        TextView subTitleTextView =
-                (TextView) rowView.findViewById(R.id.secondLine);
-
-        TextView descriptionTextView =
-                (TextView) rowView.findViewById(R.id.thirdLine);
-
+        ViewHolder holder = null;
         ReservationObject reservationObject = (ReservationObject) getItem(position);
-        titleTextView.setText(reservationObject.getName());
-        subTitleTextView.setText(reservationObject.getAddress());
-        descriptionTextView.setText(reservationObject.getInfo());
 
-        return rowView;
+        if(convertView == null) {
+            convertView = mInflater.inflate(R.layout.object_list_item, parent, false);
+
+            holder = new ViewHolder();
+            holder.titleTextView = (TextView) convertView.findViewById(R.id.firstLine);
+            holder.subTitleTextView = (TextView) convertView.findViewById(R.id.secondLine);
+            holder.descriptionTextView = (TextView) convertView.findViewById(R.id.thirdLine);
+
+            convertView.setTag(holder);
+        }
+        else{
+            holder = (ViewHolder) convertView.getTag();
+        }
+
+        holder.titleTextView.setText(reservationObject.getName());
+        holder.subTitleTextView.setText(reservationObject.getAddress());
+        holder.descriptionTextView.setText(reservationObject.getInfo());
+
+        return convertView;
+    }
+
+    private static class ViewHolder {
+        public TextView titleTextView;
+        public TextView subTitleTextView;
+        public TextView descriptionTextView;
     }
 }

@@ -172,6 +172,14 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (prgDialog!=null){
+            prgDialog.dismiss();
+        }
+    }
+
     private ActionBarDrawerToggle setupDrawerToggle() {
         // NOTE: Make sure you pass in a valid toolbar reference.  ActionBarDrawToggle() does not require it
         // and will not render the hamburger icon without it.
