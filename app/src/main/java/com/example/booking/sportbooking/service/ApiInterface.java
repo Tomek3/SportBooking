@@ -5,16 +5,21 @@ package com.example.booking.sportbooking.service;
  */
 
 import com.example.booking.sportbooking.object.ReservationObject;
+import com.example.booking.sportbooking.objectItem.ReservationObjectItem;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface ApiInterface {
 
     @GET("reservationObject")
     Call<List<ReservationObject>> doGetListReservationObject();
+
+    @GET("reservationObjectItem/byObjectAndDate")
+    Call<List<ReservationObjectItem>> doGetListReservationObjectItem(@Query("objectId") String objectId, @Query("date") String date);
 
 //    @POST("/api/users")
 //    Call<User> createUser(@Body User user);

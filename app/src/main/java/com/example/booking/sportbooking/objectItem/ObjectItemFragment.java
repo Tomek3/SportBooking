@@ -1,8 +1,8 @@
 package com.example.booking.sportbooking.objectItem;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,11 +10,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.booking.sportbooking.R;
+import com.example.booking.sportbooking.service.ApiClient;
+import com.example.booking.sportbooking.service.ApiInterface;
 
 import java.util.Calendar;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ObjectItemFragment extends Fragment implements
         View.OnClickListener {
@@ -23,6 +32,7 @@ public class ObjectItemFragment extends Fragment implements
 
     Button btnDatePicker;
     TextView txtDate;
+    ListView mListView;
     private int mYear, mMonth, mDay;
     private Integer objectId;
 
@@ -34,19 +44,21 @@ public class ObjectItemFragment extends Fragment implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
-            objectId = bundle.getInt("objectId");
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            objectId = bundle.getInt("objectId");
+        }
+
         myFragmentView = inflater.inflate(R.layout.fragment_object_item, container, false);
         btnDatePicker=(Button)myFragmentView.findViewById(R.id.btn_date);
         txtDate=(TextView)myFragmentView.findViewById(R.id.in_date);
+        mListView = (ListView) myFragmentView.findViewById(R.id.objectItemListView);
 
         final Calendar c = Calendar.getInstance();
         mYear = c.get(Calendar.YEAR);
@@ -55,6 +67,7 @@ public class ObjectItemFragment extends Fragment implements
         txtDate.setText(mDay + "-" + (mMonth + 1) + "-" + mYear);
 
         btnDatePicker.setOnClickListener(this);
+        getObjectItem(objectId, mYear + "-" + (mMonth + 1) + "-" + mDay);
 
         return myFragmentView;
     }
@@ -100,10 +113,33 @@ public class ObjectItemFragment extends Fragment implements
                                               int monthOfYear, int dayOfMonth) {
 
                             txtDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                            getObjectItem(objectId, year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
 
                         }
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
         }
+    }
+
+    public void getObjectItem(Integer objectId, String date){
+        final ProgressDialog prgDialog = new ProgressDialog(getActivity());
+        prgDialog.show();
+        Call<List<ReservationObjectItem>> call = ApiClient.getClient().create(ApiInterface.class).doGetListReservationObjectItem(objectId.toString(), date);
+        call.enqueue(new Callback<List<ReservationObjectItem>>() {
+            @Override
+            public void onResponse(Call<List<ReservationObjectItem>>call, Response<List<ReservationObjectItem>> response) {
+                List<ReservationObjectItem> reservationObjectItems = response.body();
+
+                ReservationObjectItemAdapter adapter = new ReservationObjectItemAdapter(getContext(), reservationObjectItems);
+                mListView.setAdapter(adapter);
+                prgDialog.hide();
+            }
+
+            @Override
+            public void onFailure(Call<List<ReservationObjectItem>>call, Throwable t) {
+                Toast.makeText(getContext(), getResources().getString(R.string.http404), Toast.LENGTH_LONG).show();
+                prgDialog.hide();
+            }
+        });
     }
 }
