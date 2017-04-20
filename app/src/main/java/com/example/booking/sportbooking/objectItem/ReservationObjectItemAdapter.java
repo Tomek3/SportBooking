@@ -11,6 +11,9 @@ import com.example.booking.sportbooking.R;
 import com.example.booking.sportbooking.object.ReservationObject;
 import com.example.booking.sportbooking.object.ReservationObjectAdapter;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -49,7 +52,7 @@ public class ReservationObjectItemAdapter extends BaseAdapter {
         ReservationObjectItem reservationObjectItem = (ReservationObjectItem) getItem(position);
 
         if(convertView == null) {
-            convertView = mInflater.inflate(R.layout.object_list_item, parent, false);
+            convertView = mInflater.inflate(R.layout.object_item_list_item, parent, false);
 
             holder = new ReservationObjectItemAdapter.ViewHolder();
             holder.titleTextView = (TextView) convertView.findViewById(R.id.firstLine);
@@ -62,9 +65,12 @@ public class ReservationObjectItemAdapter extends BaseAdapter {
             holder = (ReservationObjectItemAdapter.ViewHolder) convertView.getTag();
         }
 
-        holder.titleTextView.setText(reservationObjectItem.getDateFrom());
-        holder.subTitleTextView.setText(reservationObjectItem.getDateTo());
-        holder.descriptionTextView.setText(reservationObjectItem.getAvailable().toString());
+
+        holder.titleTextView.setText(reservationObjectItem.getDateFrom().substring(0,reservationObjectItem.getDateFrom().length()-2));
+        holder.subTitleTextView.setText(reservationObjectItem.getDateTo().substring(0,reservationObjectItem.getDateTo().length()-2));
+        if(reservationObjectItem.getAvailable()){
+            holder.descriptionTextView.setText(R.string.objectItemAvailable);
+        }
 
         return convertView;
     }
