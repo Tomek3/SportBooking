@@ -33,4 +33,10 @@
     <string name="login_successfully">Zalogowano poprawnie!</string>
     <string name="nav_item_about_program">O programie</string>
 
+    <string name="object_item_calendar">Termin</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="change_date">Wybierz datę</string>
+
 </resources>

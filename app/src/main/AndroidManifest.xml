@@ -28,7 +28,7 @@
         <activity android:name=".object.ObjectActivity" />
         <activity android:name=".ReservationActivity" />
         <activity android:name=".NotificationActivity" />
-        <activity android:name=".AboutProgramActivity"></activity>
+        <activity android:name=".AboutProgramActivity" />
     </application>
 
 </manifest>

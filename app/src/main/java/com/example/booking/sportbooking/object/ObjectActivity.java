@@ -1,12 +1,16 @@
 package com.example.booking.sportbooking.object;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.example.booking.sportbooking.BaseActivity;
 import com.example.booking.sportbooking.R;
+import com.example.booking.sportbooking.objectItem.ObjectItemActivity;
 import com.example.booking.sportbooking.service.ReservationService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -36,6 +40,16 @@ public class ObjectActivity extends BaseActivity {
         final ListView listView = new ListView(this);
         FrameLayout frameLayout = (FrameLayout)findViewById(R.id.flContent);
         frameLayout.addView(listView);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ReservationObject selectedObject = (ReservationObject)parent.getAdapter().getItem(position);
+                Intent detailIntent = new Intent(getApplicationContext(), ObjectItemActivity.class);
+                detailIntent.putExtra("objectId", selectedObject.getId());
+                startActivity(detailIntent);
+            }
+        });
 
         prgDialog.show();
 
