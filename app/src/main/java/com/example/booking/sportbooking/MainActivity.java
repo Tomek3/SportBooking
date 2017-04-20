@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
                         editor.putString("Login",obj.getString("login"));
                         editor.putString("Password",obj.getString("password"));
                         editor.putString("Name",obj.getString("name"));
+                        editor.putInt("UserId",obj.getInt("id"));
 
                         editor.commit();
 
