@@ -1,5 +1,6 @@
 package com.example.booking.sportbooking.objectItem;
 
+import android.app.Fragment;
 import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -16,18 +17,22 @@ import java.util.Calendar;
 
 public class ObjectItemActivity extends BaseActivity implements ObjectItemFragment.OnFragmentInteractionListener {
 
+    private String objectName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        navigationView.getMenu().getItem(0).setChecked(true);
-        setTitle(R.string.nav_item_objects);
+//        navigationView.getMenu().getItem(0).setChecked(true);
+//        setTitle(R.string.nav_item_objects);
 
-//        // pobieramy dane wysłane przez aktywność główną
-//        Bundle extras = getIntent().getExtras();
-//        if (extras != null) {
-//            String objectId = extras.getString("objectId");
-//        }
+        // pobieramy dane wysłane przez aktywność główną
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            objectName = extras.getString("objectName");
+        }
+
+        setTitle(objectName);
 
         ObjectItemFragment objectItemFragment = new ObjectItemFragment();
         objectItemFragment.setArguments(getIntent().getExtras());
@@ -37,6 +42,14 @@ public class ObjectItemActivity extends BaseActivity implements ObjectItemFragme
     }
 
 
-    public void onItemSelected(int position){
+    public void onItemSelected(ReservationObjectItem reservationObjectItem){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("reservationObjectItem", reservationObjectItem);
+
+        ObjectItemActionFragment objectItemActionFragment = new ObjectItemActionFragment();
+        objectItemActionFragment.setArguments(bundle);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContent, objectItemActionFragment).commit();
     }
 }

@@ -3,11 +3,13 @@ package com.example.booking.sportbooking.objectItem;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.booking.sportbooking.R;
+import com.example.booking.sportbooking.object.ReservationObject;
 import com.example.booking.sportbooking.service.ApiClient;
 import com.example.booking.sportbooking.service.ApiInterface;
 
@@ -69,6 +72,14 @@ public class ObjectItemFragment extends Fragment implements
         btnDatePicker.setOnClickListener(this);
         getObjectItem(objectId, mYear + "-" + (mMonth + 1) + "-" + mDay);
 
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ReservationObjectItem selectedObjectItem = (ReservationObjectItem)parent.getAdapter().getItem(position);
+                mListener.onItemSelected(selectedObjectItem);
+            }
+        });
+
         return myFragmentView;
     }
 
@@ -90,7 +101,7 @@ public class ObjectItemFragment extends Fragment implements
     }
 
     public interface OnFragmentInteractionListener {
-        void onItemSelected(int position);
+        void onItemSelected(ReservationObjectItem reservationObjectItem);
     }
 
     @Override

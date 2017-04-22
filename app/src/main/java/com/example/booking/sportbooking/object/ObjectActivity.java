@@ -47,6 +47,7 @@ public class ObjectActivity extends BaseActivity {
                 ReservationObject selectedObject = (ReservationObject)parent.getAdapter().getItem(position);
                 Intent detailIntent = new Intent(getApplicationContext(), ObjectItemActivity.class);
                 detailIntent.putExtra("objectId", selectedObject.getId());
+                detailIntent.putExtra("objectName", selectedObject.getName());
                 startActivity(detailIntent);
             }
         });

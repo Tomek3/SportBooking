@@ -21,7 +21,10 @@
         android:layout_alignBottom="@+id/in_date"
         android:layout_toRightOf="@+id/in_date"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/my_button_bg"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="3dp"/>
 
     <ListView
         android:id="@+id/objectItemListView"

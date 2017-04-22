@@ -3,7 +3,9 @@ package com.example.booking.sportbooking.objectItem;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ReservationObjectItem {
+import java.io.Serializable;
+
+public class ReservationObjectItem implements Serializable {
 
     @SerializedName("id")
     @Expose
