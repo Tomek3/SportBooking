@@ -75,7 +75,7 @@ public class ObjectItemActionFragment extends Fragment implements View.OnClickLi
             createReservation(userId, reservationObjectItem.getId());
         }
         else if(v == watchButton){
-            Toast.makeText(getContext(), R.string.watchObjectInfo, Toast.LENGTH_LONG).show();
+            createWatch(userId, reservationObjectItem.getId());
         }
     }
 
@@ -100,6 +100,52 @@ public class ObjectItemActionFragment extends Fragment implements View.OnClickLi
                     }
                     else{
                         Toast.makeText(getContext(), R.string.reserveObjectNotAvailable, Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    Toast.makeText(getContext(), getResources().getString(R.string.jsonError), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
+                prgDialog.hide();
+                if(statusCode == 404){
+                    Toast.makeText(getContext(), getResources().getString(R.string.http404), Toast.LENGTH_LONG).show();
+                }
+                else if(statusCode == 500){
+                    Toast.makeText(getContext(), getResources().getString(R.string.http500), Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(getContext(), getResources().getString(R.string.httpError), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+    }
+
+    public void createWatch(Integer userId, Integer resId){
+        final ProgressDialog prgDialog = new ProgressDialog(getActivity());
+        prgDialog.show();
+
+        AsyncHttpClient client = new AsyncHttpClient();
+
+        RequestParams params = new RequestParams();
+        params.put("userId", userId.toString());
+        params.put("resId", resId.toString());
+
+        client.get(ReservationService.getAbsoluteUrl("watch/create"),params ,new TextHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String response) {
+                prgDialog.hide();
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    if(obj.getBoolean("status")){
+                        Toast.makeText(getContext(), R.string.watchObjectInfo, Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        Toast.makeText(getContext(), R.string.objectWatched, Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     Toast.makeText(getContext(), getResources().getString(R.string.jsonError), Toast.LENGTH_LONG).show();
