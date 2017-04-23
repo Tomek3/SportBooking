@@ -23,8 +23,8 @@ public class ObjectItemActivity extends BaseActivity implements ObjectItemFragme
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-//        navigationView.getMenu().getItem(0).setChecked(true);
-//        setTitle(R.string.nav_item_objects);
+
+        navigationView.getMenu().getItem(0).setChecked(false);
 
         // pobieramy dane wysłane przez aktywność główną
         Bundle extras = getIntent().getExtras();
