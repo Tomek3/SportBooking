@@ -60,6 +60,9 @@ public class ObjectItemActionFragment extends Fragment implements View.OnClickLi
         if(!reservationObjectItem.getAvailable()){
             reserveButton.setVisibility(View.GONE);
         }
+        else{
+            watchButton.setVisibility(View.GONE);
+        }
 
         // Inflate the layout for this fragment
         return myFragmentView ;
