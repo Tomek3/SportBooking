@@ -1,6 +1,7 @@
 package com.example.booking.sportbooking.objectItem;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -45,11 +46,16 @@ public class ObjectItemActivity extends BaseActivity implements ObjectItemFragme
     public void onItemSelected(ReservationObjectItem reservationObjectItem){
         Bundle bundle = new Bundle();
         bundle.putSerializable("reservationObjectItem", reservationObjectItem);
+        bundle.putString("objectName", objectName);
 
-        ObjectItemActionFragment objectItemActionFragment = new ObjectItemActionFragment();
-        objectItemActionFragment.setArguments(bundle);
+//        ObjectItemActionFragment objectItemActionFragment = new ObjectItemActionFragment();
+//        objectItemActionFragment.setArguments(bundle);
+//
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        fragmentManager.beginTransaction().replace(R.id.flContent, objectItemActionFragment).commit();
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flContent, objectItemActionFragment).commit();
+        Intent detailIntent = new Intent(this, ObjectItemActionActivity.class);
+        detailIntent.putExtras(bundle);
+        startActivity(detailIntent);
     }
 }

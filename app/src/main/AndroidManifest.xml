@@ -29,9 +29,10 @@
         <activity android:name=".ReservationActivity" />
         <activity android:name=".NotificationActivity" />
         <activity android:name=".AboutProgramActivity" />
-        <activity android:name=".objectItem.ObjectItemActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize">
-        </activity>
+        <activity
+            android:name=".objectItem.ObjectItemActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"></activity>
+        <activity android:name=".objectItem.ObjectItemActionActivity"></activity>
     </application>
 
 </manifest>
