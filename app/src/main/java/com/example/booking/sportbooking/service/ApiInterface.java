@@ -21,6 +21,9 @@ public interface ApiInterface {
     @GET("reservationObjectItem/byObjectAndDate")
     Call<List<ReservationObjectItem>> doGetListReservationObjectItem(@Query("objectId") String objectId, @Query("date") String date);
 
+    @GET("reservation/create")
+    Call<String> createReservation(@Query("userId") String userId, @Query("resId") String resId);
+
 //    @POST("/api/users")
 //    Call<User> createUser(@Body User user);
 //

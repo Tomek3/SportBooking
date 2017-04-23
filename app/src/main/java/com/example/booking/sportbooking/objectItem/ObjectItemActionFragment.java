@@ -1,20 +1,24 @@
 package com.example.booking.sportbooking.objectItem;
 
-
-import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.booking.sportbooking.R;
+import com.example.booking.sportbooking.service.ReservationService;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.TextHttpResponseHandler;
+import org.json.JSONException;
+import org.json.JSONObject;
+import cz.msebera.android.httpclient.Header;
 
-import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -64,12 +68,61 @@ public class ObjectItemActionFragment extends Fragment implements View.OnClickLi
     @Override
     public void onClick(View v) {
 
+        SharedPreferences settings = getActivity().getSharedPreferences("UserInfo", 0);
+        Integer userId = settings.getInt("UserId",-1);
+
         if (v == reserveButton) {
-            Toast.makeText(getContext(), R.string.reserveObjectInfo, Toast.LENGTH_LONG).show();
+            createReservation(userId, reservationObjectItem.getId());
         }
         else if(v == watchButton){
             Toast.makeText(getContext(), R.string.watchObjectInfo, Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void createReservation(Integer userId, Integer resId){
+        final ProgressDialog prgDialog = new ProgressDialog(getActivity());
+        prgDialog.show();
+
+        AsyncHttpClient client = new AsyncHttpClient();
+
+        RequestParams params = new RequestParams();
+        params.put("userId", userId.toString());
+        params.put("resId", resId.toString());
+
+        client.get(ReservationService.getAbsoluteUrl("reservation/create"),params ,new TextHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String response) {
+                prgDialog.hide();
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    if(obj.getBoolean("status")){
+                        Toast.makeText(getContext(), R.string.reserveObjectInfo, Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        Toast.makeText(getContext(), R.string.reserveObjectNotAvailable, Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    Toast.makeText(getContext(), getResources().getString(R.string.jsonError), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
+                prgDialog.hide();
+                if(statusCode == 404){
+                    Toast.makeText(getContext(), getResources().getString(R.string.http404), Toast.LENGTH_LONG).show();
+                }
+                else if(statusCode == 500){
+                    Toast.makeText(getContext(), getResources().getString(R.string.http500), Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(getContext(), getResources().getString(R.string.httpError), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
     }
 
 }

@@ -45,5 +45,6 @@
     <string name="dateToLabel">Data do:</string>
     <string name="reserveObjectInfo">Zarezerwowano pomyślnie</string>
     <string name="watchObjectInfo">Dodano do obserwowanych</string>
+    <string name="reserveObjectNotAvailable">Nie można dokonać rezerwacji. Obiekt niedostępny</string>
 
 </resources>
