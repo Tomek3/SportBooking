@@ -66,7 +66,7 @@ public class ReservationAdapter extends BaseAdapter {
         holder.titleTextView.setText(reservation.getReservationObjectName());
         holder.subTitleTextView.setText(reservation.getReservationObjectAddress());
         holder.descriptionTextView.setText(String.format("%s - %s", reservation.getDateFrom().substring(0,reservation.getDateFrom().length()-2),
-                reservation.getDateTo().substring(reservation.getDateTo().indexOf(" "), reservation.getDateTo().length()-2)));
+                reservation.getDateTo().substring(reservation.getDateTo().indexOf(" ")+1, reservation.getDateTo().length()-2)));
         holder.detailsTextView.setText(String.format("%s %s", mContext.getString(R.string.reservationNumber), reservation.getId()));
 
         return convertView;

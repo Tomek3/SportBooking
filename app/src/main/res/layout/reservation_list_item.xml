@@ -42,16 +42,17 @@
             android:layout_width="match_parent"
             android:layout_height="40dip"
             android:maxLines="3"
-            android:paddingTop="16dp"
+            android:paddingTop="10dp"
             android:paddingRight="16dp"
-            android:textColor="@color/colorGreen"/>
+            android:textColor="@color/colorGreen"
+            android:gravity="right"/>
 
         <TextView
             android:id="@+id/fourthLine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimaryDark"
-            android:gravity="right"/>
+            android:gravity="left"/>
 
     </LinearLayout>
 
