@@ -6,6 +6,7 @@ package com.example.booking.sportbooking.service;
 
 import com.example.booking.sportbooking.object.ReservationObject;
 import com.example.booking.sportbooking.objectItem.ReservationObjectItem;
+import com.example.booking.sportbooking.reservation.Reservation;
 
 import java.util.List;
 
@@ -23,6 +24,9 @@ public interface ApiInterface {
 
     @GET("reservation/create")
     Call<String> createReservation(@Query("userId") String userId, @Query("resId") String resId);
+
+    @GET("reservation/byUser")
+    Call<List<Reservation>> doGetListUserReservation(@Query("userId") String userId);
 
 //    @POST("/api/users")
 //    Call<User> createUser(@Body User user);
