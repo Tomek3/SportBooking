@@ -6,4 +6,10 @@
           android:title="@string/action_settings"
           android:orderInCategory="100"
           app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_delete"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="@string/delete_reservation"
+        app:showAsAction="ifRoom"/>
 </menu>

@@ -31,6 +31,7 @@ public class BaseActivity extends AppCompatActivity {
     protected ActionBarDrawerToggle drawerToggle;
     protected NavigationView navigationView;
     protected ProgressDialog prgDialog;
+    protected MenuItem deleteButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +69,8 @@ public class BaseActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        deleteButton = menu.findItem(R.id.action_delete);
+        deleteButton.setVisible(false);
         return true;
     }
 

@@ -48,5 +48,8 @@
     <string name="reserveObjectNotAvailable">Nie można dokonać rezerwacji. Obiekt niedostępny.</string>
     <string name="objectWatched">Obiekt jest już obserwowany.</string>
     <string name="reservationNumber">Numer rezerwacji:</string>
+    <string name="delete_reservation">Usuń rezerwacje</string>
+    <string name="reservationDeleted">Rezerwacja została usunięta</string>
+    <string name="reservationDeletedError">Nie można usunąć rezerwacji</string>
 
 </resources>
