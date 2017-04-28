@@ -72,6 +72,11 @@ public class ReservationAdapter extends BaseAdapter {
         return convertView;
     }
 
+    public void removeItem(int position){
+        mDataSource.remove(position);
+        notifyDataSetChanged();
+    }
+
     private static class ViewHolder {
         public TextView titleTextView;
         public TextView subTitleTextView;

@@ -72,8 +72,30 @@ public class ReservationActivity extends BaseActivity {
             }
         });
 
-        prgDialog.show();
+        loadAdapterData();
+    }
 
+    public void onBackPressed() {
+        super.onBackPressed();
+        super.navigatetoLoginActivity();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(R.id.action_delete == item.getItemId())
+        {
+            deleteButton.setVisible(false);
+            listView.setItemChecked(selectedPosition,false);
+            deleteReservation(getSharedPreferences("UserInfo", 0).getInt("UserId",-1), selectedReservation.getId());
+            adapter.removeItem(selectedPosition);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
+    public void loadAdapterData(){
+        prgDialog.show();
         SharedPreferences settings = getSharedPreferences("UserInfo", 0);
         Integer userId = settings.getInt("UserId",-1);
 
@@ -94,25 +116,6 @@ public class ReservationActivity extends BaseActivity {
                 prgDialog.hide();
             }
         });
-    }
-
-    public void onBackPressed() {
-        super.onBackPressed();
-        super.navigatetoLoginActivity();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(R.id.action_delete == item.getItemId())
-        {
-            deleteButton.setVisible(false);
-            listView.setItemChecked(selectedPosition,false);
-            deleteReservation(getSharedPreferences("UserInfo", 0).getInt("UserId",-1), selectedReservation.getId());
-            adapter.notifyDataSetChanged();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-
     }
 
     public void deleteReservation(Integer userId, Integer resId){
