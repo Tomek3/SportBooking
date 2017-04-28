@@ -1,6 +1,7 @@
 package com.example.booking.sportbooking.objectItem;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,10 +70,12 @@ public class ReservationObjectItemAdapter extends BaseAdapter {
         holder.titleTextView.setText(reservationObjectItem.getDateFrom().substring(0,reservationObjectItem.getDateFrom().length()-2));
         holder.subTitleTextView.setText(reservationObjectItem.getDateTo().substring(0,reservationObjectItem.getDateTo().length()-2));
         if(reservationObjectItem.getAvailable()){
+            holder.descriptionTextView.setTextColor(mContext.getResources().getColor(R.color.colorGreen));
             holder.descriptionTextView.setText(R.string.objectItemAvailable);
         }
         else{
-            holder.descriptionTextView.setText("");
+            holder.descriptionTextView.setTextColor(mContext.getResources().getColor(R.color.colorRed));
+            holder.descriptionTextView.setText(R.string.itemBusy);
         }
 
 

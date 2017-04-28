@@ -87,7 +87,7 @@ public class ReservationActivity extends BaseActivity {
             deleteButton.setVisible(false);
             listView.setItemChecked(selectedPosition,false);
             deleteReservation(getSharedPreferences("UserInfo", 0).getInt("UserId",-1), selectedReservation.getId());
-            adapter.removeItem(selectedPosition);
+
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -136,6 +136,7 @@ public class ReservationActivity extends BaseActivity {
                     JSONObject obj = new JSONObject(response);
                     if(obj.getBoolean("status")){
                         Toast.makeText(getBaseContext(), R.string.reservationDeleted, Toast.LENGTH_LONG).show();
+                        removeItemFromAdapter();
                     }
                     else{
                         Toast.makeText(getBaseContext(), R.string.reservationDeletedError, Toast.LENGTH_LONG).show();
@@ -162,5 +163,9 @@ public class ReservationActivity extends BaseActivity {
             }
         });
 
+    }
+
+    public void removeItemFromAdapter(){
+        adapter.removeItem(selectedPosition);
     }
 }

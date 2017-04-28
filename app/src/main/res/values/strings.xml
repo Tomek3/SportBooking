@@ -51,5 +51,6 @@
     <string name="delete_reservation">Usuń rezerwacje</string>
     <string name="reservationDeleted">Rezerwacja została usunięta</string>
     <string name="reservationDeletedError">Nie można usunąć rezerwacji</string>
+    <string name="itemBusy">Zajęty. Możliwość obserwacji.</string>
 
 </resources>

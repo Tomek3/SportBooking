@@ -5,12 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.example.booking.sportbooking.R;
+import com.example.booking.sportbooking.Utility;
 import com.example.booking.sportbooking.object.ReservationObject;
 import com.example.booking.sportbooking.object.ReservationObjectAdapter;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -65,6 +68,16 @@ public class ReservationAdapter extends BaseAdapter {
 
         holder.titleTextView.setText(reservation.getReservationObjectName());
         holder.subTitleTextView.setText(reservation.getReservationObjectAddress());
+
+        Date dateFrom = Utility.dateFromString(reservation.getDateFrom());
+
+        if(dateFrom.before(new Date())){
+            holder.descriptionTextView.setTextColor(mContext.getResources().getColor(R.color.colorRed));
+        }
+        else{
+            holder.descriptionTextView.setTextColor(mContext.getResources().getColor(R.color.colorGreen));
+        }
+
         holder.descriptionTextView.setText(String.format("%s - %s", reservation.getDateFrom().substring(0,reservation.getDateFrom().length()-2),
                 reservation.getDateTo().substring(reservation.getDateTo().indexOf(" ")+1, reservation.getDateTo().length()-2)));
         holder.detailsTextView.setText(String.format("%s %s", mContext.getString(R.string.reservationNumber), reservation.getId()));
