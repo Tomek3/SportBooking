@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +34,7 @@ public class ObjectItemFragment extends Fragment implements
 
     private View myFragmentView;
 
-    Button btnDatePicker;
+    ImageButton btnDatePicker;
     TextView txtDate;
     ListView mListView;
     private int mYear, mMonth, mDay;
@@ -59,7 +60,7 @@ public class ObjectItemFragment extends Fragment implements
         }
 
         myFragmentView = inflater.inflate(R.layout.fragment_object_item, container, false);
-        btnDatePicker=(Button)myFragmentView.findViewById(R.id.btn_date);
+        btnDatePicker=(ImageButton)myFragmentView.findViewById(R.id.btn_date);
         txtDate=(TextView)myFragmentView.findViewById(R.id.in_date);
         mListView = (ListView) myFragmentView.findViewById(R.id.objectItemListView);
 
