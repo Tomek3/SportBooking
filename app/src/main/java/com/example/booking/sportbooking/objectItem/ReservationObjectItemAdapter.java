@@ -71,6 +71,10 @@ public class ReservationObjectItemAdapter extends BaseAdapter {
         if(reservationObjectItem.getAvailable()){
             holder.descriptionTextView.setText(R.string.objectItemAvailable);
         }
+        else{
+            holder.descriptionTextView.setText("");
+        }
+
 
         return convertView;
     }

@@ -4,27 +4,36 @@
     android:layout_height="match_parent"
     tools:context="com.example.booking.sportbooking.objectItem.ObjectItemFragment">
 
-    <TextView
-        android:id="@+id/in_date"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="7dp"
-        android:gravity="center"
-        android:textStyle="bold"/>
+    <RelativeLayout
+        android:id="@+id/relLay"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/in_date"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="7dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:text="@string/change_date"
         android:id="@+id/btn_date"
-        android:layout_alignBottom="@+id/in_date"
         android:layout_toRightOf="@+id/in_date"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:background="@drawable/my_button_bg"
         android:layout_marginTop="3dp"
         android:layout_marginRight="3dp"/>
+
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/objectItemListView"
@@ -33,5 +42,5 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/in_date" />
+        android:layout_below="@+id/relLay" />
 </RelativeLayout>

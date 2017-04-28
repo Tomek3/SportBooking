@@ -1,6 +1,7 @@
 package com.example.booking.sportbooking.objectItem;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.booking.sportbooking.R;
+import com.example.booking.sportbooking.reservation.ReservationActivity;
 import com.example.booking.sportbooking.service.ReservationService;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
@@ -100,6 +102,7 @@ public class ObjectItemActionFragment extends Fragment implements View.OnClickLi
                     JSONObject obj = new JSONObject(response);
                     if(obj.getBoolean("status")){
                         Toast.makeText(getContext(), R.string.reserveObjectInfo, Toast.LENGTH_LONG).show();
+                        navigateToReservationActivity();
                     }
                     else{
                         Toast.makeText(getContext(), R.string.reserveObjectNotAvailable, Toast.LENGTH_LONG).show();
@@ -172,6 +175,10 @@ public class ObjectItemActionFragment extends Fragment implements View.OnClickLi
             }
         });
 
+    }
+
+    public void navigateToReservationActivity(){
+        startActivity(new Intent(getContext(), ReservationActivity.class));
     }
 
 }
