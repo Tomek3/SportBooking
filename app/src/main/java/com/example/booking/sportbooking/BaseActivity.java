@@ -18,6 +18,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.booking.sportbooking.notification.Notification;
+import com.example.booking.sportbooking.notification.NotificationService;
 import com.example.booking.sportbooking.object.ObjectActivity;
 import com.example.booking.sportbooking.reservation.ReservationActivity;
 import com.example.booking.sportbooking.service.ApiClient;
@@ -78,6 +80,7 @@ public class BaseActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if(R.id.action_settings == item.getItemId())
         {
+            NotificationService.stopActionWatch(this,null,null);
             navigatetoLoginActivity();
         }
 

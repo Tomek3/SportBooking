@@ -4,6 +4,7 @@ package com.example.booking.sportbooking.service;
  * Created by Tomek on 09.04.2017.
  */
 
+import com.example.booking.sportbooking.notification.Notification;
 import com.example.booking.sportbooking.object.ReservationObject;
 import com.example.booking.sportbooking.objectItem.ReservationObjectItem;
 import com.example.booking.sportbooking.reservation.Reservation;
@@ -27,6 +28,9 @@ public interface ApiInterface {
 
     @GET("reservation/byUser")
     Call<List<Reservation>> doGetListUserReservation(@Query("userId") String userId);
+
+    @GET("notification/byUser")
+    Call<List<Notification>> doGetListUserNotification(@Query("userId") String userId);
 
 
 //    @POST("/api/users")

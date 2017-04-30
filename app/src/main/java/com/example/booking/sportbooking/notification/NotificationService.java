@@ -5,12 +5,26 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
 import com.example.booking.sportbooking.R;
 import com.example.booking.sportbooking.object.ReservationObject;
+import com.example.booking.sportbooking.objectItem.ObjectItemActionActivity;
+import com.example.booking.sportbooking.objectItem.ReservationObjectItem;
+import com.example.booking.sportbooking.reservation.Reservation;
 import com.example.booking.sportbooking.reservation.ReservationActivity;
+import com.example.booking.sportbooking.reservation.ReservationAdapter;
+import com.example.booking.sportbooking.service.ApiClient;
+import com.example.booking.sportbooking.service.ApiInterface;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
@@ -47,6 +61,14 @@ public class NotificationService extends IntentService {
         context.startService(intent);
     }
 
+    public static void stopActionWatch(Context context, String param1, String param2) {
+        Intent intent = new Intent(context, NotificationService.class);
+        intent.setAction(ACTION_WATCH);
+        intent.putExtra(EXTRA_PARAM1, param1);
+        intent.putExtra(EXTRA_PARAM2, param2);
+        context.stopService(intent);
+    }
+
     @Override
     protected void onHandleIntent(Intent intent) {
         if (intent != null) {
@@ -65,26 +87,92 @@ public class NotificationService extends IntentService {
      */
     private void handleActionWatch(String param1, String param2) {
         try {
-            Thread.sleep(5000);
+            do {
+                Thread.sleep(10000);
 
-            Intent intent = new Intent(this, ReservationActivity.class);
-            PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
+                SharedPreferences settings = getSharedPreferences("UserInfo", 0);
+                Integer userId = settings.getInt("UserId", -1);
 
-            NotificationCompat.Builder mBuilder =
-                    new NotificationCompat.Builder(this)
-                            .setSmallIcon(R.drawable.ic_notification_icon)
-                            .setContentTitle("My notification")
-                            .setContentText("Hello World!")
-                            .setContentIntent(pIntent)
-                            .setAutoCancel(true);
+                ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+                Call<List<Notification>> call = apiService.doGetListUserNotification(userId.toString());
+                call.enqueue(new Callback<List<Notification>>() {
+                    @Override
+                    public void onResponse(Call<List<Notification>> call, Response<List<Notification>> response) {
+                        List<Notification> notificationList = response.body();
+
+                        for (Notification notification : notificationList) {
+                            NotificationManager mNotifyMgr =
+                                    (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+                            if (notification.getReservationId() != null && notification.getReservationId() > 0) {
+                                Intent intent = new Intent(getBaseContext(), ReservationActivity.class);
+                                PendingIntent pIntent = PendingIntent.getActivity(getBaseContext(), (int) System.currentTimeMillis(), intent, 0);
+
+                                NotificationCompat.Builder mBuilder =
+                                        new NotificationCompat.Builder(getBaseContext())
+                                                .setSmallIcon(R.drawable.ic_notification_icon)
+                                                .setContentTitle(getString(R.string.incomingReservation))
+                                                .setContentText(String.format("%s - %s", notification.getObjectName(), notification.getDateFrom().substring(0, notification.getDateFrom().length() - 2)))
+                                                .setContentIntent(pIntent)
+                                                .setAutoCancel(true);
 
 
-            int mNotificationId = 001;
+                                mNotifyMgr.notify(notification.getId(), mBuilder.build());
+                            } else {
+                                ReservationObjectItem roi = new ReservationObjectItem();
+                                roi.setId(notification.getReservationObjectItemId());
+                                roi.setDateFrom(notification.getDateFrom());
+                                roi.setDateTo(notification.getDateTo());
+                                roi.setAvailable(true);
 
-            NotificationManager mNotifyMgr =
-                    (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("reservationObjectItem", roi);
+                                bundle.putString("objectName", notification.getObjectName());
 
-            mNotifyMgr.notify(mNotificationId, mBuilder.build());
+                                Intent intent = new Intent(getBaseContext(), ObjectItemActionActivity.class);
+                                intent.putExtras(bundle);
+                                PendingIntent pIntent = PendingIntent.getActivity(getBaseContext(), (int) System.currentTimeMillis(), intent, 0);
+
+                                NotificationCompat.Builder mBuilder =
+                                        new NotificationCompat.Builder(getBaseContext())
+                                                .setSmallIcon(R.drawable.ic_notification_icon)
+                                                .setContentTitle(getString(R.string.watchingReservationAvailable))
+                                                .setContentText(String.format("%s - %s", notification.getObjectName(), notification.getDateFrom().substring(0, notification.getDateFrom().length() - 2)))
+                                                .setContentIntent(pIntent)
+                                                .setAutoCancel(true);
+
+
+                                mNotifyMgr.notify(notification.getId(), mBuilder.build());
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Notification>> call, Throwable t) {
+                        //Toast.makeText(getApplicationContext(), getResources().getString(R.string.http404), Toast.LENGTH_LONG).show();
+                    }
+                });
+            }while(true);
+
+//            Intent intent = new Intent(this, ReservationActivity.class);
+//            PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
+//
+//            NotificationCompat.Builder mBuilder =
+//                    new NotificationCompat.Builder(this)
+//                            .setSmallIcon(R.drawable.ic_notification_icon)
+//                            .setContentTitle("My notification")
+//                            .setContentText("Hello World!")
+//                            .setContentIntent(pIntent)
+//                            .setAutoCancel(true);
+//
+//
+//            int mNotificationId = 001;
+//
+//            NotificationManager mNotifyMgr =
+//                    (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+//
+//            mNotifyMgr.notify(mNotificationId, mBuilder.build());
 
         } catch (InterruptedException e) {
             // Restore interrupt status.
