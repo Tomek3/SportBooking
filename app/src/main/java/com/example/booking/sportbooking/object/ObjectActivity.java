@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import com.example.booking.sportbooking.BaseActivity;
 import com.example.booking.sportbooking.R;
+import com.example.booking.sportbooking.notification.NotificationService;
 import com.example.booking.sportbooking.objectItem.ObjectItemActivity;
 import com.example.booking.sportbooking.service.ReservationService;
 import com.google.gson.Gson;
@@ -36,6 +37,8 @@ public class ObjectActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         navigationView.getMenu().getItem(0).setChecked(true);
         setTitle(R.string.nav_item_objects);
+
+        NotificationService.startActionWatch(this,null,null);
 
         final ListView listView = new ListView(this);
         FrameLayout frameLayout = (FrameLayout)findViewById(R.id.flContent);
