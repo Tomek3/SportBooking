@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.booking.sportbooking.R;
 import com.example.booking.sportbooking.reservation.ReservationActivity;
 import com.example.booking.sportbooking.service.ReservationService;
+import com.example.booking.sportbooking.watched.ObjectWatchedActivity;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -149,6 +150,7 @@ public class ObjectItemActionFragment extends Fragment implements View.OnClickLi
                     JSONObject obj = new JSONObject(response);
                     if(obj.getBoolean("status")){
                         Toast.makeText(getContext(), R.string.watchObjectInfo, Toast.LENGTH_LONG).show();
+                        navigateToObjectWatchedActivity();
                     }
                     else{
                         Toast.makeText(getContext(), R.string.objectWatched, Toast.LENGTH_LONG).show();
@@ -179,6 +181,10 @@ public class ObjectItemActionFragment extends Fragment implements View.OnClickLi
 
     public void navigateToReservationActivity(){
         startActivity(new Intent(getContext(), ReservationActivity.class));
+    }
+
+    public void navigateToObjectWatchedActivity(){
+        startActivity(new Intent(getContext(), ObjectWatchedActivity.class));
     }
 
 }

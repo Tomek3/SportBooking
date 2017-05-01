@@ -12,16 +12,16 @@
             android:icon="@android:drawable/ic_menu_my_calendar"
             android:title="@string/nav_item_reservation" />
         <item
-            android:id="@+id/navigation_item_notification"
-            android:icon="@android:drawable/ic_btn_speak_now"
-            android:title="@string/nav_item_notification" />
+            android:id="@+id/navigation_item_watched"
+            android:icon="@android:drawable/ic_menu_search"
+            android:title="@string/nav_item_watched" />
     </group>
 
     <item android:title="@string/nav_sub_menu">
         <menu>
             <item
                 android:id="@+id/navigation_item_about_program"
-                android:icon="@android:drawable/ic_lock_power_off"
+                android:icon="@android:drawable/ic_menu_help"
                 android:title="@string/nav_item_about_program" />
         </menu>
     </item>

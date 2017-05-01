@@ -22,6 +22,7 @@
     <string name="nav_item_objects">Obiekty</string>
     <string name="nav_item_reservation">Rezerwacje</string>
     <string name="nav_item_notification">Notyfikacje</string>
+    <string name="nav_item_watched">Obserwowane</string>
     <string name="nav_sub_menu">Inne</string>
     <string name="nav_item_logout">Wyloguj</string>
     <string name="action_settings">Wyloguj</string>
@@ -50,7 +51,9 @@
     <string name="reservationNumber">Numer rezerwacji:</string>
     <string name="delete_reservation">Usuń rezerwacje</string>
     <string name="reservationDeleted">Rezerwacja została usunięta</string>
+    <string name="watchedDeleted">Obserwacja została usunięta</string>
     <string name="reservationDeletedError">Nie można usunąć rezerwacji</string>
+    <string name="watchedDeletedError">Nie można usunąć obserwacji</string>
     <string name="itemBusy">Zajęty. Możliwość obserwacji.</string>
     <string name="incomingReservation">Nadchodząca rezerwacja</string>
     <string name="watchingReservationAvailable">Termin zwolniony</string>

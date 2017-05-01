@@ -32,6 +32,8 @@ public interface ApiInterface {
     @GET("notification/byUser")
     Call<List<Notification>> doGetListUserNotification(@Query("userId") String userId);
 
+    @GET("reservation/watched/byUser")
+    Call<List<Reservation>> doGetListUserObjectWatched(@Query("userId") String userId);
 
 //    @POST("/api/users")
 //    Call<User> createUser(@Body User user);

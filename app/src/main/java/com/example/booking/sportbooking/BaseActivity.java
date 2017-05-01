@@ -24,6 +24,7 @@ import com.example.booking.sportbooking.object.ObjectActivity;
 import com.example.booking.sportbooking.reservation.ReservationActivity;
 import com.example.booking.sportbooking.service.ApiClient;
 import com.example.booking.sportbooking.service.ApiInterface;
+import com.example.booking.sportbooking.watched.ObjectWatchedActivity;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -156,8 +157,8 @@ public class BaseActivity extends AppCompatActivity {
             case R.id.navigation_item_reservation:
                 startActivity(new Intent(getApplicationContext(), ReservationActivity.class));
                 break;
-            case R.id.navigation_item_notification:
-                startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
+            case R.id.navigation_item_watched:
+                startActivity(new Intent(getApplicationContext(), ObjectWatchedActivity.class));
                 break;
             case R.id.navigation_item_about_program:
                 startActivity(new Intent(getApplicationContext(), AboutProgramActivity.class));

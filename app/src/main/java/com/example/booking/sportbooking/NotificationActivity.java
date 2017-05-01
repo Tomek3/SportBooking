@@ -10,7 +10,7 @@ public class NotificationActivity extends BaseActivity {
 
         super.onCreate(savedInstanceState);
         navigationView.getMenu().getItem(2).setChecked(true);
-        setTitle(R.string.nav_item_notification);
+        setTitle(R.string.nav_item_watched);
     }
 
     public void onBackPressed() {
