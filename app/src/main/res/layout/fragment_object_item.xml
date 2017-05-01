@@ -8,33 +8,33 @@
     <RelativeLayout
         android:id="@+id/relLay"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="30dp"
         android:background="@color/colorPrimary"
         android:layout_marginBottom="10dp">
 
         <TextView
             android:id="@+id/in_date"
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="7dp"
-            android:layout_toLeftOf="@+id/btn_date"
-            android:layout_toStartOf="@+id/btn_date"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
             android:fontFamily="sans-serif"
             android:gravity="center"
             android:text="23"
             android:textColor="@color/cardview_light_background"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/btn_date"
+            android:layout_toStartOf="@+id/btn_date" />
 
         <ImageButton
             android:id="@+id/btn_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_menu_day"
+            android:background="@null"
+            app:srcCompat="@android:drawable/ic_menu_search"
+            android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true" />
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 
