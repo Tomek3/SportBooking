@@ -6,6 +6,8 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
@@ -104,6 +106,8 @@ public class NotificationService extends IntentService {
                             NotificationManager mNotifyMgr =
                                     (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
+                            Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
                             if (notification.getReservationId() != null && notification.getReservationId() > 0) {
                                 Intent intent = new Intent(getBaseContext(), ReservationActivity.class);
                                 PendingIntent pIntent = PendingIntent.getActivity(getBaseContext(), (int) System.currentTimeMillis(), intent, 0);
@@ -114,6 +118,7 @@ public class NotificationService extends IntentService {
                                                 .setContentTitle(getString(R.string.incomingReservation))
                                                 .setContentText(String.format("%s - %s", notification.getObjectName(), notification.getDateFrom().substring(0, notification.getDateFrom().length() - 2)))
                                                 .setContentIntent(pIntent)
+                                                .setSound(alarmSound)
                                                 .setAutoCancel(true);
 
 
@@ -139,6 +144,7 @@ public class NotificationService extends IntentService {
                                                 .setContentTitle(getString(R.string.watchingReservationAvailable))
                                                 .setContentText(String.format("%s - %s", notification.getObjectName(), notification.getDateFrom().substring(0, notification.getDateFrom().length() - 2)))
                                                 .setContentIntent(pIntent)
+                                                .setSound(alarmSound)
                                                 .setAutoCancel(true);
 
 
